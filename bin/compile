@@ -62,10 +62,12 @@ done
 
 
 bundle_install
-write_database_yml
-db_migrate
-create_asset_plugin
 
+if [ -f $1/config/environment.rb ]; then
+  write_database_yml
+  db_migrate
+  create_asset_plugin
+fi
 
 # Store new artifacts in cache.
 for dir in $CACHED_DIRS; do
